@@ -51,8 +51,6 @@ def get_nama_from_init_data(init_data):
 
 def auth(initdata):
     response = requests.post('https://tg-bot-tap.laborx.io/api/v1/auth/validate-init',data=initdata, headers=headers)
-    print(response.status_code)
-    print(response.text)
     if response.status_code ==200:
         return response.json().get("token")
     return None
@@ -73,9 +71,7 @@ def process_initdata(init_data):
     # Login
     nama = get_nama_from_init_data(init_data)
     print(nama)
-    print(init_data)
     token = auth(init_data)
-    print(token)
     if token:
         start_response = start_session(token)
         daily_response = claim_session(token)
